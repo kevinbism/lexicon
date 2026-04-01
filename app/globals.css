@@ -1,0 +1,95 @@
+@import 'tailwindcss';
+
+/* ── CUSTOM THEME via CSS variables ── */
+@theme {
+  /* Font families */
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+
+  /* Colors - Light mode */
+  --color-bg: #f9f9f9;
+  --color-surface: #ffffff;
+  --color-surface-low: #f2f4f4;
+  --color-surface-mid: #ebeeef;
+  --color-surface-high: #e4e9ea;
+  --color-surface-highest: #dde4e5;
+
+  --color-text: #2d3435;
+  --color-text2: #5a6061;
+  --color-text3: #757c7d;
+  --color-text4: #adb3b4;
+  --color-texte: #ff817d;
+
+  --color-primary: #4c5f80;
+  --color-primary-container: #d6e3ff;
+  --color-on-primary: #f6f7ff;
+  --color-on-primary-container: #3f5272;
+
+  --color-secondary: #566352;
+  --color-secondary-container: #d9e7d2;
+  --color-on-secondary-container: #495545;
+
+  --color-tertiary: #476656;
+  --color-tertiary-container: #d9fce8;
+  --color-on-tertiary-container: #446253;
+
+  --color-error: #9f403d;
+  --color-error-container: #fe8983;
+
+  --color-border: #dde4e5;
+  --color-border2: #adb3b4;
+
+  /* Radii */
+  --radius-md: 1rem;
+  --radius-lg: 2rem;
+  --radius-full: 9999px;
+
+  /* Layout */
+  --nav-h: 80px;
+}
+
+/* ── DARK MODE ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0e1112;
+    --color-surface: #181c1d;
+    --color-surface-low: #1d2122;
+    --color-surface-mid: #222728;
+    --color-surface-high: #2a3031;
+    --color-surface-highest: #323a3b;
+
+    --color-text: #e0e5e6;
+    --color-text2: #a8b0b1;
+    --color-text3: #757c7d;
+    --color-text4: #3f4748;
+    --color-texte: #ff817d;
+
+    --color-primary: #bccff6;
+    --color-primary-container: #2d405f;
+    --color-on-primary: #1a2a44;
+    --color-on-primary-container: #c1d5fb;
+
+    --color-secondary: #b5c4af;
+    --color-secondary-container: #364334;
+    --color-on-secondary-container: #cbd9c4;
+
+    --color-tertiary: #a0c9b2;
+    --color-tertiary-container: #325041;
+    --color-on-tertiary-container: #cbedda;
+
+    --color-border: #2a3031;
+    --color-border2: #3f4748;
+  }
+}
+
+/* ── BASE STYLES ── */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
