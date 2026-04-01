@@ -177,6 +177,15 @@ export const useWordStore = create(
           words: state.words.map(w => ({ ...w, learned: false })),
         })),
 
+      // Cancellazione totale (equivalente di confirmReset())
+      resetAllWords: () =>
+        set({
+          words: [],
+          currentId: null,
+          editingId: null,
+          currentScreen: 'home',
+        }),
+
       // Equivalente di addSamples()
       addSamples: () => {
         const { words } = get();

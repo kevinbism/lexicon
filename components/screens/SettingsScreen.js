@@ -1,13 +1,29 @@
 'use client';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useWordStore } from '../../store/useWordStore';
+import ResetModal from '../ui/ResetModal';
 
 export default function SettingsScreen() {
-  const { getStats, clearLearned, addSamples } = useWordStore();
+  const { getStats, clearLearned, addSamples, resetAllWords } = useWordStore();
   const { total, learned, favs } = getStats();
 
+  const [showResetModal, setShowResetModal] = useState(false);
+
+  const handleAddSamples = () => {
+    addSamples();
+    toast.success('Sample words added!');
+  };
+
   const handleClearLearned = () => {
-    if (!confirm('Reset learned status for all words?')) return;
     clearLearned();
+    toast.success('Learned status reset!');
+  };
+
+  const handleResetConfirm = () => {
+    resetAllWords();
+    setShowResetModal(false);
+    toast.success('All words deleted.');
   };
 
   return (
@@ -26,7 +42,7 @@ export default function SettingsScreen() {
       </div>
 
       <div className="flex flex-col gap-2 px-6 py-5">
-        {/* Sezione Stats */}
+        {/* Stats */}
         <div className="text-[10px] font-bold text-text3 uppercase tracking-[0.6px] mt-4 mb-1.5 mx-1">
           Your progress
         </div>
@@ -49,13 +65,13 @@ export default function SettingsScreen() {
           ))}
         </div>
 
-        {/* Sezione Actions */}
+        {/* Actions */}
         <div className="text-[10px] font-bold text-text3 uppercase tracking-[0.6px] mt-4 mb-1.5 mx-1">
           Actions
         </div>
         <div className="bg-surface border border-border rounded-[2rem] overflow-hidden">
           <div
-            onClick={addSamples}
+            onClick={handleAddSamples}
             className="
               flex items-center justify-between px-4.5 py-3.75
               border-b border-border cursor-pointer
@@ -76,7 +92,30 @@ export default function SettingsScreen() {
             <span className="text-[15px] font-semibold text-primary">Reset</span>
           </div>
         </div>
+
+        {/* Danger zone */}
+        <div className="text-[10px] font-bold text-text3 uppercase tracking-[0.6px] mt-4 mb-1.5 mx-1">
+          Danger zone
+        </div>
+        <div className="bg-surface border border-border rounded-[2rem] overflow-hidden">
+          <div
+            onClick={() => setShowResetModal(true)}
+            className="
+              flex items-center justify-between px-4.5 py-3.75
+              cursor-pointer hover:bg-surface-low transition-colors
+            "
+          >
+            <span className="text-[15px] text-error font-semibold">Delete all words</span>
+            <span className="text-[15px] font-semibold text-error">Delete</span>
+          </div>
+        </div>
       </div>
+
+      <ResetModal
+        show={showResetModal}
+        onCancel={() => setShowResetModal(false)}
+        onConfirm={handleResetConfirm}
+      />
     </>
   );
 }
