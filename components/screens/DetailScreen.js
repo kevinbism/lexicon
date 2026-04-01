@@ -133,7 +133,7 @@ export default function DetailScreen() {
           onClick={() => setShowDelete(true)}
           className="
             flex-1 py-3.5 rounded-2xl border-none cursor-pointer
-            bg-error-container text-error
+            bg-error-container text-error-dark
             font-display font-bold text-[15px]
             transition-opacity active:opacity-75
           "

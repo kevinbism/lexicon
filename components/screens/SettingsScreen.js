@@ -105,8 +105,8 @@ export default function SettingsScreen() {
               cursor-pointer hover:bg-surface-low transition-colors
             "
           >
-            <span className="text-[15px] text-error font-semibold">Delete all words</span>
-            <span className="text-[15px] font-semibold text-error">Delete</span>
+            <span className="text-[15px] text-texte font-semibold">Delete all words</span>
+            <span className="text-[15px] font-semibold text-texte">Delete</span>
           </div>
         </div>
       </div>

@@ -37,7 +37,7 @@ export default function ResetModal({ show, onCancel, onConfirm }) {
             onClick={onConfirm}
             className="
               flex-1 py-4 rounded-2xl border-none cursor-pointer
-              bg-error-container text-error font-display font-bold text-[15px]
+              bg-error-container text-error-dark font-display font-bold text-[15px]
               transition-opacity active:opacity-75
             "
           >

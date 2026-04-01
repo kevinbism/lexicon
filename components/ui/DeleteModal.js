@@ -14,7 +14,7 @@ export default function DeleteModal({ show, onCancel }) {
       {/* Overlay scuro */}
       <div
         onClick={onCancel}
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
             onCancel();
           }
@@ -52,7 +52,7 @@ export default function DeleteModal({ show, onCancel }) {
             onClick={handleDelete}
             className="
               flex-1 py-4 rounded-2xl
-              bg-error-container text-error font-display font-bold text-[15px]
+              bg-error-container text-error-dark font-display font-bold text-[15px]
               transition-opacity active:opacity-75
             "
           >
