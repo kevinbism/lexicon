@@ -8,6 +8,9 @@ export default function WordCard({ word, showFavToggle = true }) {
     toggleFav(word.id);
   };
 
+  // Utility per determinare se è un verbo all'infinito (es. "to run") o una frase (es. "break a leg")
+  const isInfinitive = str => /^to\s+\w+/i.test(str);
+
   return (
     <div
       onClick={() => openDetail(word.id)}
@@ -36,24 +39,29 @@ export default function WordCard({ word, showFavToggle = true }) {
         </button>
       )}
 
-      {/* Badge "Infinitive" */}
+      {/* Badge "Infinitive" or "Phrase" */}
       <span
-        className="
-        inline-block px-2.5 py-0.5 rounded-full
-        bg-secondary-container text-on-secondary-container
+        className={`
+        inline-block px-2.5 py-0.5 rounded-full text-on-secondary-container
         text-[10px] font-bold uppercase tracking-[0.6px] mb-2.5
-      "
+        ${isInfinitive(word.inf) ? 'bg-secondary-container' : 'bg-fourth'}
+      `}
       >
-        Infinitive
+        {isInfinitive(word.inf) ? 'Infinitive' : 'Word/Phrase'}
       </span>
 
       {/* Parola principale */}
       <div className="font-display text-[22px] font-bold text-text">{word.inf}</div>
 
       {/* Forme */}
-      <div className="text-[13px] text-text2 mt-0.5 italic">
-        past: {word.past} &nbsp;·&nbsp; pp: {word.pp}
-      </div>
+      {(word.past || word.pp) && (
+        <div className="text-[13px] text-text2 mt-0.5 italic">
+          {word.past && <>past: {word.past}</>}
+          {word.past && word.pp && <> · </>}
+          {word.pp && <>pp: {word.pp}</>}
+        </div>
+      )}
+      {word.trans && <div className="text-[13px] text-text2 mt-0.5">translation: {word.trans}</div>}
 
       {/* Pills learned / fav */}
       {(word.learned || word.fav) && (

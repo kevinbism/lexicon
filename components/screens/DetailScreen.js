@@ -108,7 +108,7 @@ export default function DetailScreen() {
           font-display font-bold text-[15px] transition-opacity duration-150
           ${
             word.learned
-              ? 'bg-tertiary text-white'
+              ? 'bg-tertiary text-error-dark'
               : 'bg-tertiary-container text-on-tertiary-container'
           }
         `}
