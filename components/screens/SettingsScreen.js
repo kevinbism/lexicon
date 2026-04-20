@@ -26,6 +26,41 @@ export default function SettingsScreen() {
     toast.success('All words deleted.');
   };
 
+  const handleExport = () => {
+    const dataStr = JSON.stringify(useWordStore.getState().words, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'lexicon-backup.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = event => {
+      try {
+        const importedWords = JSON.parse(event.target.result);
+        if (Array.isArray(importedWords)) {
+          useWordStore.getState().resetAllWords();
+          // Aggiungi id, fav, learned, added se mancano
+          importedWords.forEach(word => {
+            useWordStore.getState().saveWord(word);
+          });
+          toast.success('Backup importato!');
+        } else {
+          toast.error('File non valido.');
+        }
+      } catch {
+        toast.error('Errore nel file.');
+      }
+    };
+    reader.readAsText(file);
+  };
+
   return (
     <>
       {/* Top bar */}
@@ -91,6 +126,30 @@ export default function SettingsScreen() {
             <span className="text-[15px] text-text">Reset learned status</span>
             <span className="text-[15px] font-semibold text-primary">Reset</span>
           </div>
+        </div>
+
+        {/* Backup */}
+        <div className="text-[10px] font-bold text-text3 uppercase tracking-[0.6px] mt-4 mb-1.5 mx-1">
+          Backup
+        </div>
+        <div className="bg-surface border border-border rounded-[2rem] overflow-hidden">
+          <div
+            onClick={handleExport}
+            className="flex items-center justify-between px-4.5 py-3.75 border-b border-border cursor-pointer hover:bg-surface-low transition-colors"
+          >
+            <span className="text-[15px] text-text">Backup words (JSON)</span>
+            <span className="text-[15px] font-semibold text-primary">Export</span>
+          </div>
+          <label className="flex items-center justify-between px-4.5 py-3.75 cursor-pointer hover:bg-surface-low transition-colors">
+            <span className="text-[15px] text-text">Restore from backup</span>
+            <span className="text-[15px] font-semibold text-primary">Import</span>
+            <input
+              type="file"
+              accept="application/json"
+              style={{ display: 'none' }}
+              onChange={handleImport}
+            />
+          </label>
         </div>
 
         {/* Danger zone */}
