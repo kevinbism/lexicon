@@ -62,22 +62,29 @@ export default function DetailScreen() {
         </div>
 
         {/* Chips past / pp */}
-        <div className="grid grid-cols-2 gap-2.5 mt-4.5">
-          {[
-            ['Simple Past', word.past],
-            ['Past Participle', word.pp],
-          ].map(([lbl, val]) => (
-            <div
-              key={lbl}
-              className="bg-surface-low rounded-2xl px-3.5 py-3"
-            >
-              <div className="text-[10px] text-text3 font-bold uppercase tracking-[0.5px]">
-                {lbl}
-              </div>
-              <div className="font-display text-[15px] font-semibold text-text mt-0.5">{val}</div>
-            </div>
-          ))}
-        </div>
+        {(word.past || word.pp) && (
+          <div className="grid grid-cols-2 gap-2.5 mt-4.5">
+            {[
+              ['Simple Past', word.past],
+              ['Past Participle', word.pp],
+            ].map(
+              ([lbl, val]) =>
+                val && (
+                  <div
+                    key={lbl}
+                    className="bg-surface-low rounded-2xl px-3.5 py-3"
+                  >
+                    <div className="text-[10px] text-text3 font-bold uppercase tracking-[0.5px]">
+                      {lbl}
+                    </div>
+                    <div className="font-display text-[15px] font-semibold text-text mt-0.5">
+                      {val}
+                    </div>
+                  </div>
+                ),
+            )}
+          </div>
+        )}
       </div>
 
       {/* Esempio */}
