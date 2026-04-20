@@ -16,8 +16,8 @@ export default function AddScreen() {
     const w = getEditingWord();
     if (w) {
       setInf(w.inf);
-      setPast(w.past);
-      setPp(w.pp);
+      setPast(w.past ?? '');
+      setPp(w.pp ?? '');
       setExample(w.example ?? '');
       setTrans(w.trans ?? '');
     } else {
@@ -30,7 +30,7 @@ export default function AddScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editingId]);
 
-  const isValid = inf.trim() && past.trim() && pp.trim();
+  const isValid = inf.trim();
 
   const handleSave = () => {
     if (!isValid) return;
@@ -73,7 +73,7 @@ export default function AddScreen() {
           ←
         </button>
         <h2 className="font-display text-[17px] font-bold text-text">
-          {editingId ? 'Edit word' : 'New word'}
+          {editingId ? 'Edit' : 'New word or phrase'}
         </h2>
       </div>
 
@@ -84,7 +84,7 @@ export default function AddScreen() {
             className={labelClass}
             htmlFor="inf-input"
           >
-            Infinitive *
+            Word/phrase *
           </label>
           <input
             id="inf-input"
@@ -100,7 +100,7 @@ export default function AddScreen() {
             className={labelClass}
             htmlFor="past-input"
           >
-            Simple Past *
+            Simple Past (optional)
           </label>
           <input
             id="past-input"
@@ -116,7 +116,7 @@ export default function AddScreen() {
             className={labelClass}
             htmlFor="pp-input"
           >
-            Past Participle *
+            Past Participle (optional)
           </label>
           <input
             id="pp-input"
