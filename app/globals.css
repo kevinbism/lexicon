@@ -33,7 +33,12 @@
   --color-tertiary-container: #d9fce8;
   --color-on-tertiary-container: #446253;
 
+  --color-fourth: #643a6f;
+  --color-fourth-container: #f0d7f5;
+  --color-on-fourth-container: #4d2950;
+
   --color-error: #9f403d;
+  --color-error-dark: #202020;
   --color-error-container: #fe8983;
 
   --color-border: #dde4e5;
@@ -74,8 +79,16 @@
     --color-on-secondary-container: #cbd9c4;
 
     --color-tertiary: #a0c9b2;
-    --color-tertiary-container: #325041;
+    --color-tertiary-container: #325035;
     --color-on-tertiary-container: #cbedda;
+
+    --color-fourth: #643a6f;
+    --color-fourth-container: #f0d7f5;
+    --color-on-fourth-container: #4d2950;
+
+    --color-error: #9f403d;
+    --color-error-dark: #202020;
+    --color-error-container: #fe8983;
 
     --color-border: #2a3031;
     --color-border2: #3f4748;

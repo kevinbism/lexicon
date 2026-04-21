@@ -126,8 +126,8 @@ export const useWordStore = create(
         const word = {
           id: editingId ?? uid(),
           inf,
-          past,
-          pp,
+          past: past ?? '',
+          pp: pp ?? '',
           example: example ?? '',
           trans: trans ?? '',
           fav: existing?.fav ?? false,
