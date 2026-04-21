@@ -1,4 +1,4 @@
-import { Analytics } from '@vercel/analytics';
+import { Analytics } from '@vercel/analytics/next';
 import { Manrope, Inter } from 'next/font/google';
 import './globals.css';
 
