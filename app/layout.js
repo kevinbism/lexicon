@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import { Manrope, Inter } from 'next/font/google';
 import './globals.css';
 
@@ -24,7 +25,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${manrope.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="bg-bg text-text font-sans">{children}</body>
+      <body className="bg-bg text-text font-sans">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
